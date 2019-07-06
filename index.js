@@ -76,13 +76,13 @@ app.post('/eventadd',(req,res)=>{
         priceStart=post.priceStart;
         ticketsAvailable=post.ticketsAvailable;
 
-        modelAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,places,priceEnd,priceStart,ticketsAvailable);
+        eventAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,places,priceEnd,priceStart,ticketsAvailable);
         res.end(JSON.stringify({ msg: "OK" }));
     });
 
 });
 
-function modelAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,places,priceEnd,priceEnd,ticketsAvailable) {
+function eventAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,places,priceEnd,priceEnd,ticketsAvailable) {
 
     var mongoClientPromise = mongoClient.connect(async function (err, client) {
         const db = client.db(dbName);
