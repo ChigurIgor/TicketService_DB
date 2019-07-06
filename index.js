@@ -6,11 +6,10 @@ var mongo = require('mongodb');
 const PORT = process.env.PORT || 5000;
 
 const MongoClient = require("mongodb").MongoClient;
-const url = "mongodb://madcat:masterminde+1@ds231537.mlab.com:31537/phoneservice";
+const url = "mongodb://madcat:masterminde+1@ds247827.mlab.com:47827/ticketservice";
 const mongoClient = new MongoClient(url, { useNewUrlParser: true });
 // создаем объект MongoClient и передаем ему строку подключения
-const dbName="phoneservice";
-
+const dbName="ticketservice";
 
 
 
