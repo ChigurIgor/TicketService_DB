@@ -29,6 +29,119 @@ app.listen(process.env.PORT || 5000, function(){
 // app.use(express.bodyParser());
 app.use(bodyParser.json());
 
+
+
+// -------------------------------------------------------- events --------------------------------------------------------------------------
+
+
+
+app.post('/eventadd',(req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    let date="";
+    let description="";
+    let eventName="";
+    let eventStar="";
+    let hall="";
+    let imgMain="";
+    let imgPreview="";
+    let places=[];
+    let priceEnd=0;
+    let priceStart=0;
+    let ticketsAvailable=0;
+    // let place={};
+    // place.category="";
+    // place.price=0;
+    // place.row=0;
+    // place.seat=0;
+    // var obj=JSON.stringify(works);
+    // works=obj;
+    let body = '';
+    req.on('data', chunk => {
+        body += chunk.toString(); // convert Buffer to string
+    });
+    req.on('end', () => {
+        var post = qs.parse(body);
+
+        console.log(body);
+        date=post.date;
+        description=post.description;
+        eventName=post.eventName;
+        eventStar=post.eventStar;
+        hall=post.hall;
+        imgMain=post.imgMain;
+        imgPreview=post.imgPreview;
+        places=post.places;
+        priceEnd=post.priceEnd;
+        priceStart=post.priceStart;
+        ticketsAvailable=post.ticketsAvailable;
+
+        modelAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,places,priceEnd,priceStart,ticketsAvailable);
+        res.end(JSON.stringify({ msg: "OK" }));
+    });
+
+});
+
+function modelAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,places,priceEnd,priceEnd,ticketsAvailable) {
+
+    var mongoClientPromise = mongoClient.connect(async function (err, client) {
+        const db = client.db(dbName);
+
+        const collection = db.collection("events");
+        let event = {date: date,
+                    description:description,
+                    eventName:eventName,
+                    eventStar:eventStar,
+                    hall:hall,
+                    imgMain:imgMain,
+                    imgPreview:imgPreview,
+                    places:places,
+                    priceEnd:priceEnd,
+                    priceEnd:priceEnd,
+                    ticketsAvailable:ticketsAvailable};
+        try {
+            await collection.insertOne(event, function (err, result) {
+
+                if (err) {
+                    return console.log(err);
+                }
+                console.log(result.ops);
+
+            });
+        } finally {
+            if (db) mongoClientPromise.close();
+            console.log("client.close()");
+            res.end(JSON.stringify({ msg: "OK" }));
+
+
+        }
+    });
+
+
+}
+
+
+
+
+
+
+// -------------------------------------------------------- old --------------------------------------------------------------------------
+// -------------------------------------------------------- old --------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // -------------------------------------------------------- phones --------------------------------------------------------------------------
 
 app.post('/getmakes',(req,res)=>{
