@@ -49,6 +49,7 @@ app.post('/eventadd',(req,res)=>{
     let priceEnd=0;
     let priceStart=0;
     let ticketsAvailable=0;
+    let category="";
     // let place={};
     // place.category="";
     // place.price=0;
@@ -75,20 +76,24 @@ app.post('/eventadd',(req,res)=>{
         priceEnd=post.priceEnd;
         priceStart=post.priceStart;
         ticketsAvailable=post.ticketsAvailable;
+        category=post.category;
+        console.log(places);
 
-        eventAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,places,priceEnd,priceStart,ticketsAvailable);
+        eventAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,places,priceEnd,priceStart,ticketsAvailable,category);
         res.end(JSON.stringify({ msg: "OK" }));
     });
 
 });
 
-function eventAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,places,priceEnd,priceEnd,ticketsAvailable) {
+function eventAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,places,priceEnd,priceEnd,ticketsAvailable,category) {
 
     var mongoClientPromise = mongoClient.connect(async function (err, client) {
         const db = client.db(dbName);
 
         const collection = db.collection("events");
-        let event = {date: date,
+        let event = {
+                    category:category,
+                    date: date,
                     description:description,
                     eventName:eventName,
                     eventStar:eventStar,
