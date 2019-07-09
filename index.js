@@ -85,7 +85,7 @@ app.post('/eventadd',(req,res)=>{
 
 });
 
-function eventAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,places,priceEnd,priceEnd,ticketsAvailable,category) {
+function eventAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,places,priceEnd,priceStart,ticketsAvailable,category) {
 
     var mongoClientPromise = mongoClient.connect(async function (err, client) {
         const db = client.db(dbName);
@@ -102,7 +102,7 @@ function eventAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,p
                     imgPreview:imgPreview,
                     places:places,
                     priceEnd:priceEnd,
-                    priceEnd:priceEnd,
+                    priceStart:priceStart,
                     ticketsAvailable:ticketsAvailable};
         try {
             await collection.insertOne(event, function (err, result) {
