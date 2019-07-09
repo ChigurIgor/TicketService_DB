@@ -156,19 +156,8 @@ function getEvents(id,res){
 
                 await db.collection("events").find().toArray(function (err, documents) {
                     console.log(documents);
-                    let eventsArr=documents.map();
 
-                    console.log(eventsArr);
-
-                    // var arrayUnique = function (arr) {
-                    //     return arr.filter(function(item, index){
-                    //         return arr.indexOf(item) >= index;
-                    //     });
-                    // };
-                    // var makesUnique = arrayUnique(makesArr);
-                    // makesUnique.sort();
-
-                    res.end(JSON.stringify(eventsArr));
+                    res.end(JSON.stringify(documents));
 
 
                 });
