@@ -182,8 +182,9 @@ function getEvents(id,res){
 
 
 app.post('/registration',(req,res)=>{
-    res.header("Access-Control-Allow-Origin", "*");
-    // res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept, x-auth");
     let gender="";
     let name="";
     let surname="";
