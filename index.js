@@ -77,7 +77,6 @@ app.post('/eventadd',(req,res)=>{
         priceStart=post.priceStart;
         ticketsAvailable=post.ticketsAvailable;
         category=post.category;
-        console.log(places);
 
         eventAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,places,priceEnd,priceStart,ticketsAvailable,category);
         res.end(JSON.stringify({ msg: "OK" }));
@@ -117,15 +116,71 @@ function eventAdd(date,description,eventName,eventStar,hall,imgMain,imgPreview,p
             if (db) mongoClientPromise.close();
             console.log("client.close()");
             res.end(JSON.stringify({ msg: "OK" }));
-
-
         }
     });
 
 
 }
 
+app.post('/getevents',(req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    let id="";
 
+    let body = '';
+    req.on('data', chunk => {
+        body += chunk.toString(); // convert Buffer to string
+    });
+    req.on('end', () => {
+        var post = qs.parse(body);
+
+        console.log(body);
+        id=post.id;
+
+        getEvents(id,res);
+    });
+
+});
+
+function getEvents(id,res){
+
+    var mongoClientPromise = mongoClient.connect(async function (err, client) {
+        if (err){
+            console.error('An error occurred connecting to MongoDB: ',err);
+        }else {
+            const db = client.db(dbName);
+            var answer = "0";
+            // var allProductsArray = db.collection("phones").find().toArray();
+            try {
+
+
+                await db.collection("events").find().toArray(function (err, documents) {
+                    console.log(documents);
+                    let eventsArr=documents.map();
+
+                    console.log(eventsArr);
+
+                    // var arrayUnique = function (arr) {
+                    //     return arr.filter(function(item, index){
+                    //         return arr.indexOf(item) >= index;
+                    //     });
+                    // };
+                    // var makesUnique = arrayUnique(makesArr);
+                    // makesUnique.sort();
+
+                    res.end(JSON.stringify(eventsArr));
+
+
+                });
+            } finally {
+                if (db) mongoClientPromise.close();
+                console.log("client.close()");
+
+            }
+        }
+
+    });
+}
 
 
 
