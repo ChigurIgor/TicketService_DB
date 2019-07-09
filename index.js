@@ -244,6 +244,7 @@ function userAdd(gender,name,surname,company,street,house,addinfo,postcode,city,
             addinfo:addinfo,
             postcode:postcode,
             city:city,
+            country:country,
             email:email,
             password:password,
             phone:phone,
@@ -303,7 +304,7 @@ function login(login,password,res){
 
                 await db.collection("users").find({email: login,password: password}).toArray(function (err, documents) {
                     console.log(documents);
-                   
+
                     res.end(JSON.stringify(documents));
 
 
