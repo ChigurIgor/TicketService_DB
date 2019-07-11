@@ -216,29 +216,30 @@ app.post('/registration',(req,res)=>{
     // });
     // body= req.body;
     // req.on('end', () => {
-    //     var post = qs.parse(body);
+        var post = req.body;
+        // var post = qs.parse(body);
     //     console.log("req.end");
     //
     //     console.log(body);
-    //     gender=post.gender;
-    //     name=post.name;
-    //     surname=post.surname;
-    //     company=post.company;
-    //     street=post.street;
-    //     house=post.house;
-    //     addinfo=post.addinfo;
-    //     postcode=post.postcode;
-    //     city=post.city;
-    //     country=post.country;
-    //     email=post.email;
-    //     password=post.password;
-    //     phone=post.phone;
-    //     addphone=post.addphone;
-    //
-    //     userAdd(gender,name,surname,company,street,house,addinfo,postcode,city,country,email,password,phone,addphone);
-    //     res.end(JSON.stringify({ msg: "OK" }));
+        gender=post.gender;
+        name=post.name;
+        surname=post.surname;
+        company=post.company;
+        street=post.street;
+        house=post.house;
+        addinfo=post.addinfo;
+        postcode=post.postcode;
+        city=post.city;
+        country=post.country;
+        email=post.email;
+        password=post.password;
+        phone=post.phone;
+        addphone=post.addphone;
+
+        userAdd(gender,name,surname,company,street,house,addinfo,postcode,city,country,email,password,phone,addphone);
+        res.end(JSON.stringify({ msg: "OK" }));
     // });
-console.log(req.body.gender);
+// console.log(req.body.gender);
 
 });
 
