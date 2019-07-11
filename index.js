@@ -293,21 +293,21 @@ app.post('/login',(req,res)=>{
 
     var post = req.body;
     console.log(post);
-    res.on('data', chunk => {
-        console.log("res.on");
-        body += chunk.toString(); // convert Buffer to string
-    });
-    req.on('end', () => {
-        console.log("req.end");
+    // req.on('data', chunk => {
+    //     console.log("req.on");
+    //     body += chunk.toString(); // convert Buffer to string
+    // });
+    // req.on('end', () => {
+    //     console.log("req.end");
 
-        var post = qs.parse(body);
+        // var post = qs.parse(body);
 
-        console.log(body);
+        // console.log(body);
         login=post.login;
         password=post.password;
 
         login(login,password,res);
-    });
+    // });
 
 });
 
