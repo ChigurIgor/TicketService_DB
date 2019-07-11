@@ -293,10 +293,10 @@ app.post('/login',(req,res)=>{
 
     var post = req.body;
     console.log(post);
-    // req.on('data', chunk => {
-    //     console.log("req.on");
-    //     body += chunk.toString(); // convert Buffer to string
-    // });
+    res.on('data', chunk => {
+        console.log("res.on");
+        body += chunk.toString(); // convert Buffer to string
+    });
     req.on('end', () => {
         console.log("req.end");
 
