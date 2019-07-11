@@ -184,6 +184,7 @@ function getEvents(id,res){
 
 
 app.post('/registration',(req,res)=>{
+    console.log("We are in registration");
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.header('Access-Control-Allow-Headers', "*");
@@ -205,6 +206,8 @@ app.post('/registration',(req,res)=>{
     let body = '';
     req.on('data', chunk => {
         body += chunk.toString(); // convert Buffer to string
+        console.log(body);
+        console.log(chunk);
     });
     req.on('end', () => {
         var post = qs.parse(body);
