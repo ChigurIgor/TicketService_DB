@@ -130,17 +130,18 @@ app.post('/getevents',(req,res)=>{
     let id="";
 
     let body = '';
-    req.on('data', chunk => {
-        body += chunk.toString(); // convert Buffer to string
-    });
-    req.on('end', () => {
-        var post = qs.parse(body);
-
-        console.log(body);
-        id=post.id;
-
-        getEvents(id,res);
-    });
+    // req.on('data', chunk => {
+    //     body += chunk.toString(); // convert Buffer to string
+    // });
+    // req.on('end', () => {
+    //     var post = qs.parse(body);
+    //
+    //     console.log(body);
+    //     id=post.id;
+    //
+    //     getEvents(id,res);
+    // });
+    getEvents(id,res);
 
 });
 
@@ -322,7 +323,8 @@ function loginFun(login,password,res){
             // var allProductsArray = db.collection("phones").find().toArray();
             try {
 
-
+                console.log(login);
+                console.log(password);
                 await db.collection("users").find({email: login,password: password}).toArray(function (err, documents) {
                     console.log(documents);
 
