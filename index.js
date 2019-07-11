@@ -204,6 +204,10 @@ app.post('/registration',(req,res)=>{
     let addphone="";
 
     let body = '';
+    console.log(req);
+    console.log(req.toString());
+    console.log(req.data);
+
     req.on('data', chunk => {
         body += chunk.toString(); // convert Buffer to string
         console.log(body);
