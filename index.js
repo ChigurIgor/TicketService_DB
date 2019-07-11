@@ -290,10 +290,16 @@ app.post('/login',(req,res)=>{
     let password="";
 
     let body = '';
+
+    var post = req.body;
+    console.log(post);
     req.on('data', chunk => {
+        console.log("req.on");
         body += chunk.toString(); // convert Buffer to string
     });
     req.on('end', () => {
+        console.log("req.end");
+
         var post = qs.parse(body);
 
         console.log(body);
