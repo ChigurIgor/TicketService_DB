@@ -208,7 +208,7 @@ app.post('/registration',(req,res)=>{
     // console.log(req.toString());
     console.log("req.data.body");
     console.log(req.body);
-
+    res.end(JSON.stringify({ msg: "OK" }));
     req.on('data', chunk => {
         body += chunk.toString(); // convert Buffer to string
         console.log(body);
