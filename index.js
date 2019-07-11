@@ -306,12 +306,12 @@ app.post('/login',(req,res)=>{
         login=post.login;
         password=post.password;
 
-        login(login,password,res);
+        loginFun(login,password,res);
     // });
 
 });
 
-function login(login,password,res){
+function loginFun(login,password,res){
 
     var mongoClientPromise = mongoClient.connect(async function (err, client) {
         if (err){
