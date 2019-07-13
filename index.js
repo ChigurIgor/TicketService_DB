@@ -174,6 +174,58 @@ function getEvents(id,res){
     });
 }
 
+app.post('/geteventbyid',(req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    let id="";
+
+    let body = '';
+    // req.on('data', chunk => {
+    //     body += chunk.toString(); // convert Buffer to string
+    // });
+    // req.on('end', () => {
+    //     var post = qs.parse(body);
+    //
+    //     console.log(body);
+    //     id=post.id;
+    //
+    //     getEvents(id,res);
+    // });
+
+    var post = req.body;
+    id=post.id;
+    getEventById(id,res);
+
+});
+
+function getEventById(id,res){
+
+    var mongoClientPromise = mongoClient.connect(async function (err, client) {
+        if (err){
+            console.error('An error occurred connecting to MongoDB: ',err);
+        }else {
+            const db = client.db(dbName);
+            var answer = "0";
+            // var allProductsArray = db.collection("phones").find().toArray();
+            try {
+                let o_id = new mongo.ObjectID(id);
+
+                await db.collection("events").find({ "_id" : o_id }).toArray(function (err, documents) {
+                    console.log(documents);
+
+                    res.end(JSON.stringify(documents));
+
+
+                });
+            } finally {
+                if (db) mongoClientPromise.close();
+                console.log("client.close()");
+
+            }
+        }
+
+    });
+}
 
 
 

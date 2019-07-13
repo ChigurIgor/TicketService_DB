@@ -19,13 +19,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="126" column="20" selection-start-line="126" selection-start-column="11" selection-end-line="126" selection-end-column="20" />
+            <state relative-caret-position="307">
+              <caret line="208" column="79" lean-forward="true" selection-start-line="208" selection-start-column="79" selection-end-line="208" selection-end-column="79" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>byid</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -137,17 +142,20 @@
       <workItem from="1562863374452" duration="1675000" />
       <workItem from="1562865157387" duration="1664000" />
       <workItem from="1562866984248" duration="595000" />
-      <workItem from="1562871333205" duration="232000" />
+      <workItem from="1562871333205" duration="890000" />
+      <workItem from="1562926838039" duration="715000" />
+      <workItem from="1563002469349" duration="384000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29197000" />
+    <option name="totallyTimeSpent" value="30894000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15969582" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13751584" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -185,8 +193,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="126" column="20" selection-start-line="126" selection-start-column="11" selection-end-line="126" selection-end-column="20" />
+        <state relative-caret-position="307">
+          <caret line="208" column="79" lean-forward="true" selection-start-line="208" selection-start-column="79" selection-end-line="208" selection-end-column="79" />
         </state>
       </provider>
     </entry>
