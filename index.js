@@ -432,14 +432,14 @@ app.post('/orderadd',(req,res)=>{
     places=post.places;
 
 
-    orderAddT(eventId,places);
+    orderAddT(eventId,places,res);
     // res.end(JSON.stringify({ msg: "OK" }));
     // });
 // console.log(req.body.gender);
 
 });
 
-function orderAddT(eventId,places) {
+function orderAddT(eventId,places,res) {
 
     // var mongoClientPromise = mongoClient.connect(async function (err, client) {
     //     const db = client.db(dbName);
