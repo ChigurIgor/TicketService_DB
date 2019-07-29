@@ -229,11 +229,13 @@ function getEventById(id,res){
 
 
 
-// -------------------------------------------------------- users --------------------------------------------------------------------------
 
 
 // -------------------------------------------------------- events --------------------------------------------------------------------------
 
+
+
+// -------------------------------------------------------- users --------------------------------------------------------------------------
 
 
 app.post('/registration',(req,res)=>{
@@ -394,7 +396,95 @@ function loginFun(login,password,res){
     });
 }
 
+// -------------------------------------------------------- users --------------------------------------------------------------------------
 
+// -------------------------------------------------------- orders --------------------------------------------------------------------------
+
+
+
+app.post('/orderadd',(req,res)=>{
+    console.log("We are in orderadd");
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header('Access-Control-Allow-Headers', "*");
+    let eventId="";
+    let places=[];
+
+    let body = '';
+    // console.log(req);
+    // console.log(req.toString());
+    console.log("req.data.body");
+    console.log(req.body);
+
+    // req.on('data', chunk => {
+    //     body += chunk.toString(); // convert Buffer to string
+    //     console.log(body);
+    //     console.log(chunk);
+    // });
+    // body= req.body;
+    // req.on('end', () => {
+    var post = req.body;
+    // var post = qs.parse(body);
+    //     console.log("req.end");
+    //
+    //     console.log(body);
+    eventId=post.eventId;
+    places=post.places;
+
+
+    orderAdd(eventId,places);
+    // res.end(JSON.stringify({ msg: "OK" }));
+    // });
+// console.log(req.body.gender);
+
+});
+
+function orderAdd(eventId,places) {
+
+    // var mongoClientPromise = mongoClient.connect(async function (err, client) {
+    //     const db = client.db(dbName);
+    //
+    //     const collection = db.collection("users");
+    //     let user = {
+    //         gender:gender,
+    //         name: name,
+    //         surname:surname,
+    //         company:company,
+    //         street:street,
+    //         house:house,
+    //         addinfo:addinfo,
+    //         postcode:postcode,
+    //         city:city,
+    //         country:country,
+    //         email:email,
+    //         password:password,
+    //         phone:phone,
+    //         addphone:addphone};
+    //     try {
+    //         await collection.insertOne(user, function (err, result) {
+    //
+    //             if (err) {
+    //                 return console.log(err);
+    //             }
+    //             console.log(result.ops);
+    //
+    //         });
+    //     } finally {
+    //         if (db) mongoClientPromise.close();
+    //         console.log("client.close()");
+    //         res.end(JSON.stringify({ msg: "OK" }));
+    //     }
+    // });
+
+console.log('Places from func:');
+console.log(places);
+            res.end(JSON.stringify({ msg: "OK" }));
+
+
+}
+
+
+// -------------------------------------------------------- orders --------------------------------------------------------------------------
 
 
 // -------------------------------------------------------- old --------------------------------------------------------------------------
