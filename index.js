@@ -543,13 +543,13 @@ function eventSetSeats(documents,places,res){
             console.log(eventPlace);
 
             if(place.row === eventPlace.row && place.seat === eventPlace.seat){
-                // eventPlace.status.set('sold');
-                console.log('hi');
+                eventPlace.status='sold';
+                // console.log('hi');
             }
         }
     }
 
-    // console.log(event.places);
+    console.log(eventPlacesOBJ);
 
 
 
