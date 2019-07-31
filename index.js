@@ -413,8 +413,8 @@ app.post('/orderadd',(req,res)=>{
     let body = '';
     // console.log(req);
     // console.log(req.toString());
-    // console.log("req.data.body");
-    // console.log(req.body);
+    console.log("req.data.body");
+    console.log(req.body);
 
     // req.on('data', chunk => {
     //     body += chunk.toString(); // convert Buffer to string
