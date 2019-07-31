@@ -550,7 +550,7 @@ function eventSetSeats(documents,places,res,o_id){
 
     console.log(eventPlacesOBJ);
 
-
+    let eventPlaces=JSON.stringify(eventPlacesOBJ);
 
 
 
@@ -563,7 +563,7 @@ function eventSetSeats(documents,places,res,o_id){
 
 
 
-            await db.collection("events").updateOne({"_id" : o_id }, { $set: {places: eventPlacesOBJ } }, function(err, documents) {
+            await db.collection("events").updateOne({"_id" : o_id }, { $set: {places: eventPlaces } }, function(err, documents) {
                 if (err) throw err;
                 res.end(JSON.stringify({ msg: "OK" }));
             });
