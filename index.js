@@ -413,8 +413,8 @@ app.post('/orderadd',(req,res)=>{
     let body = '';
     // console.log(req);
     // console.log(req.toString());
-    console.log("req.data.body");
-    console.log(req.body);
+    // console.log("req.data.body");
+    // console.log(req.body);
 
     // req.on('data', chunk => {
     //     body += chunk.toString(); // convert Buffer to string
@@ -457,7 +457,7 @@ function orderAdd(eventId,places,res) {
                 console.log(o_id);
 
                 await db.collection("events").find({ "_id" : o_id }).toArray(function (err, documents) {
-                    console.log(documents);
+                    // console.log(documents);
 
                     // res.end(JSON.stringify(documents));
                     eventSetSeats(documents,places,res);
@@ -529,8 +529,15 @@ function orderAdd(eventId,places,res) {
 
 function eventSetSeats(event,places,res){
     console.log('event seats');
-    console.log(event);
-    console.log(places);
+    // console.log(event);
+    // console.log(places);
+
+    console.log(event.places);
+    console.log(event.places[0]);
+    console.log(event.places[1]);
+
+
+
 
     // var mongoClientPromise = mongoClient.connect(async function (err, client) {
     //     const db = client.db("phoneservice");
