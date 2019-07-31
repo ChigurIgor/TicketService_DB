@@ -432,14 +432,14 @@ app.post('/orderadd',(req,res)=>{
     places=post.places;
 
 
-    orderAddT(eventId,places,res);
+    orderAdd(eventId,places,res);
     // res.end(JSON.stringify({ msg: "OK" }));
     // });
 // console.log(req.body.gender);
 
 });
 
-function orderAddT(eventId,places,res) {
+function orderAdd(eventId,places,res) {
 
     // var mongoClientPromise = mongoClient.connect(async function (err, client) {
     //     const db = client.db(dbName);
@@ -478,6 +478,8 @@ function orderAddT(eventId,places,res) {
 
 console.log('Places from func:');
 console.log(places);
+    console.log('places[0]');
+console.log(places[0]);
             res.end(JSON.stringify({ msg: "OK" }));
 
 
@@ -961,129 +963,6 @@ app.post('/orderdelete',(req,res)=>{
 });
 
 
-function orderAdd(email,phone,id,works,make,type,model) {
-
-
-
-
-    var mongoClientPromise = mongoClient.connect(async function (err, client) {
-        const db = client.db("phoneservice");
-
-        const collection = db.collection("orders");
-        let msg = {email: email, phone: phone, id: id, works: works, make:make, type: type, model:model};
-        try {
-            await collection.insertOne(msg, function (err, result) {
-
-                if (err) {
-                    return console.log(err);
-                }
-                console.log(result.ops);
-
-            });
-        } finally {
-            sendEmail(email,phone,id,works,make,type,model);
-            if (db) mongoClientPromise.close();
-            console.log("client.close()");
-
-        }
-    });
-
-
-    function sendEmail(email,phone,id,works,make,type,model) {
-        console.log("SendEmail");
-        var nodemailer = require('nodemailer');
-
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'maabada.shaikevich@gmail.com',
-                pass: 'geulaNow770'
-            }
-        });
-        // var arr=JSON.parse(cart);
-        // console.log("cart: "+arr);
-        arrObj = {};
-        // arrObj = JSON.parse(cart);
-        console.log();
-        console.log();
-        console.log();
-
-        // console.log(arrObj);
-        // console.log("keys: "+arrObj.length);
-        // console.log("0: "+JSON.parse(arrObj[0]).id);
-        // console.log("1: "+JSON.parse(arrObj[1]).id);
-        i=0;
-        var myhtml=
-            '<h1>New order info</h1>' +
-            '<p>ID: '+id+'</p>'+
-            '<p>Customer\'s email: '+email+'</p>'+
-            '<p>Customer\'s phone: '+phone+'</p>'+
-            '<p>Make: '+make+'</p>'+
-            '<p>Type: '+type+'</p>'+
-            '<p>Model: '+model+'</p>'+
-            '<p>Works: '+works+'</p>'+
-            '<ol>'
-        ;
-        // var fullPrice=0;
-
-        // for(i=0;i<arrObj.length;i+=1){
-        //     var itemPrice=0;
-        //     var itemId=JSON.parse(arrObj[i]).id;
-        //     var itemCount=JSON.parse(arrObj[i]).count;
-        //     var itemName=JSON.parse(arrObj[i]).nameItem;
-        //     itemPrice=JSON.parse(arrObj[i]).price;
-        //     // var item =itemGetByIdForEmail(itemId);
-        //
-        //
-        //     console.log("itemPrice: "+itemPrice);
-        //
-        //     fullPrice=fullPrice+(parseInt(itemPrice)*parseInt(itemCount));
-        //
-        //     var itemHtml=
-        //         '<li>'+
-        //         // '<p>'+itemId+'</p>'+
-        //         '<p>Item: '+itemName+'</p>'+
-        //         '<p>Amount: '+itemCount+'</p>'+
-        //         '<p>ItemPrice: '+itemPrice+'</p>'+
-        //         '</li>';
-        //
-        //     myhtml=myhtml+itemHtml;
-        // }
-        console.log();
-        console.log();
-        console.log();
-        // console.log("fullPrice: "+fullPrice);
-
-
-
-        // myhtml=myhtml+'</ol>'+'<p>Full order pice: '+fullPrice+'</p>';
-
-
-
-
-
-        var mailOptions = {
-            from: 'maabada.shaikevich@gmail.com',
-            to: 'maabada.shaikevich@gmail.com',
-            subject: 'New order from store!',
-            text: 'New order from store!',
-            html: myhtml
-
-        };
-
-        transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-                console.log('Email sent error: '+error);
-            } else {
-                console.log('Email sent: ' + info.response);
-            }
-        });
-    }
-
-
-
-
-}
 
 function orederGetAll(id,res){
 
