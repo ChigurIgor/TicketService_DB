@@ -531,11 +531,11 @@ function eventSetSeats(event,places,res){
     console.log('event seats');
     console.log(event);
     // console.log(places);
-    let eventObj=JSON.parse(event);
-    console.log('eventObj');
-    console.log(eventObj);
-    console.log('eventObj.places');
-    console.log(eventObj.places);
+    // let eventObj=JSON.parse(event);
+    // console.log('eventObj');
+    // console.log(eventObj);
+    console.log('event.places');
+    console.log(event.places);
     // console.log(event.places[0]);
     // console.log(event.places[1]);
 
