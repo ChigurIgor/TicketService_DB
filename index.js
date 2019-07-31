@@ -527,7 +527,8 @@ function orderAdd(eventId,places,res) {
 
 }
 
-function eventSetSeats(event,places,res){
+function eventSetSeats(documents,places,res){
+    let event=documents[0];
     console.log('event seats');
     console.log(event);
     // console.log(places);
