@@ -428,7 +428,7 @@ app.post('/orderadd',(req,res)=>{
     //     console.log("req.end");
     //
     //     console.log(body);
-    eventId=post.eventId;
+    eventId=post.id;
     places=post.places;
 
 
@@ -453,6 +453,8 @@ function orderAdd(eventId,places,res) {
             // var allProductsArray = db.collection("phones").find().toArray();
             try {
                 let o_id = new mongo.ObjectID(eventId);
+                console.log('o_id');
+                console.log(o_id);
 
                 await db.collection("events").find({ "_id" : o_id }).toArray(function (err, documents) {
                     console.log(documents);
