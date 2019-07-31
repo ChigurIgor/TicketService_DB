@@ -538,7 +538,7 @@ function eventSetSeats(documents,places,res,o_id){
     let eventPlacesOBJ=JSON.parse(event.places);
 
     for(let place of places){
-        console.log(place);
+        // console.log(place);
         for(let eventPlace of eventPlacesOBJ){
             // console.log(eventPlace);
 
@@ -548,7 +548,7 @@ function eventSetSeats(documents,places,res,o_id){
         }
     }
 
-    console.log(eventPlacesOBJ);
+    // console.log(eventPlacesOBJ);
 
     let eventPlaces=JSON.stringify(eventPlacesOBJ);
 
