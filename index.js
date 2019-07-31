@@ -211,7 +211,7 @@ function getEventById(id,res){
                 let o_id = new mongo.ObjectID(id);
 
                 await db.collection("events").find({ "_id" : o_id }).toArray(function (err, documents) {
-                    console.log(documents);
+                    // console.log(documents);
 
                     res.end(JSON.stringify(documents));
 
@@ -441,10 +441,49 @@ app.post('/orderadd',(req,res)=>{
 
 function orderAdd(eventId,places,res) {
 
+
+
+    var mongoClientPromise = mongoClient.connect(async function (err, client) {
+        if (err){
+            console.error('An error occurred connecting to MongoDB: ',err);
+        }else {
+            const db = client.db(dbName);
+            var answer = "0";
+            // var allProductsArray = db.collection("phones").find().toArray();
+            try {
+                let o_id = new mongo.ObjectID(id);
+
+                await db.collection("events").find({ "_id" : o_id }).toArray(function (err, documents) {
+                    console.log(documents);
+
+                    // res.end(JSON.stringify(documents));
+                    eventSetSeats(documents,places,res);
+
+                });
+            } finally {
+                if (db) mongoClientPromise.close();
+                console.log("client.close()");
+
+            }
+        }
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
     // var mongoClientPromise = mongoClient.connect(async function (err, client) {
     //     const db = client.db(dbName);
     //
-    //     const collection = db.collection("users");
+    //     const collection = db.collection("events");
     //     let user = {
     //         gender:gender,
     //         name: name,
@@ -476,14 +515,45 @@ function orderAdd(eventId,places,res) {
     //     }
     // });
 
-console.log('Places from func:');
-console.log(places);
-    console.log('places[0]');
-console.log(places[0]);
-            res.end(JSON.stringify({ msg: "OK" }));
+// console.log('Places from func:');
+// console.log(places);
+//     console.log('places[0]');
+// console.log(places[0]);
+//             res.end(JSON.stringify({ msg: "OK" }));
 
 
 }
+
+function eventSetSeats(event,places,res){
+    console.log('event seats');
+    console.log(event);
+    console.log(places);
+
+    // var mongoClientPromise = mongoClient.connect(async function (err, client) {
+    //     const db = client.db("phoneservice");
+    //     var answer = "0";
+    //     // var allProductsArray = db.collection("items").find().toArray();
+    //     try {
+    //
+    //         let o_id = new mongo.ObjectID(id);
+    //
+    //         await db.collection("phones").updateOne({"_id" : o_id }, { $set: {works: works } }, function(err, documents) {
+    //             if (err) throw err;
+    //             res.end(JSON.stringify({ msg: "OK" }));
+    //         });
+    //     } finally {
+    //         if (db) mongoClientPromise.close();
+    //         console.log("client.close()");
+    //
+    //     }
+    //
+    //
+    // });
+
+                res.end(JSON.stringify({ msg: "OK" }));
+
+}
+
 
 
 // -------------------------------------------------------- orders --------------------------------------------------------------------------
