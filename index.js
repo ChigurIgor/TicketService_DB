@@ -531,14 +531,20 @@ function eventSetSeats(documents,places,res){
     let event=documents[0];
     console.log('event seats');
     console.log(event);
-    // console.log(places);
-    // let eventObj=JSON.parse(event);
-    // console.log('eventObj');
-    // console.log(eventObj);
     console.log('event.places');
     console.log(event.places);
-    // console.log(event.places[0]);
-    // console.log(event.places[1]);
+
+    for(let place of places){
+        for(let eventPlace of event.places){
+            if(place.row == eventPlace.row && place.seat == eventPlace.seat){
+                eventPlace.status = 'sold';
+            }
+        }
+    }
+
+    console.log(event.places);
+
+
 
 
 
