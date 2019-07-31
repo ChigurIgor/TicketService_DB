@@ -538,14 +538,14 @@ function eventSetSeats(documents,places,res){
 
     for(let place of places){
         console.log(place);
-        for(let eventPlace of event.places){
-            console.log(eventPlace);
-
-            if(place.row == eventPlace.row && place.seat == eventPlace.seat){
-                // eventPlace.status.set('sold');
-                console.log('hi');
-            }
-        }
+        // for(let eventPlace of event.places){
+        //     console.log(eventPlace);
+        //
+        //     if(place.row == eventPlace.row && place.seat == eventPlace.seat){
+        //         // eventPlace.status.set('sold');
+        //         console.log('hi');
+        //     }
+        // }
     }
 
     // console.log(event.places);
