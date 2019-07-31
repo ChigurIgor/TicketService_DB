@@ -413,8 +413,8 @@ app.post('/orderadd',(req,res)=>{
     let body = '';
     // console.log(req);
     // console.log(req.toString());
-    console.log("req.data.body");
-    console.log(req.body);
+    // console.log("req.data.body");
+    // console.log(req.body);
 
     // req.on('data', chunk => {
     //     body += chunk.toString(); // convert Buffer to string
@@ -531,15 +531,17 @@ function eventSetSeats(documents,places,res){
     let event=documents[0];
     console.log('event seats');
     // console.log(event);
-    console.log('event.places');
-    console.log(event.places);
-    console.log('places');
-    console.log(places);
+    // console.log('event.places');
+    // console.log(event.places);
+    // console.log('places');
+    // console.log(places);
 
     for(let place of places){
         console.log(place);
         for(let eventPlace of event.places){
-            if(place.row === eventPlace.row && place.seat === eventPlace.seat){
+            console.log(eventPlace);
+
+            if(place.row == eventPlace.row && place.seat == eventPlace.seat){
                 // eventPlace.status.set('sold');
                 console.log('hi');
             }
