@@ -537,7 +537,7 @@ function eventSetSeats(documents,places,res){
     for(let place of places){
         for(let eventPlace of event.places){
             if(place.row == eventPlace.row && place.seat == eventPlace.seat){
-                eventPlace.status = 'sold';
+                eventPlace.status.set('sold');
             }
         }
     }
