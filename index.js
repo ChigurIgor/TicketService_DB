@@ -460,7 +460,7 @@ function orderAdd(eventId,places,res) {
                     // console.log(documents);
 
                     // res.end(JSON.stringify(documents));
-                    eventSetSeats(documents,places,res);
+                    eventSetSeats(documents,places,res,o_id);
 
                 });
             } finally {
@@ -527,7 +527,7 @@ function orderAdd(eventId,places,res) {
 
 }
 
-function eventSetSeats(documents,places,res){
+function eventSetSeats(documents,places,res,o_id){
     let event=documents[0];
     console.log('event seats');
     // console.log(event);
@@ -540,11 +540,10 @@ function eventSetSeats(documents,places,res){
     for(let place of places){
         console.log(place);
         for(let eventPlace of eventPlacesOBJ){
-            console.log(eventPlace);
+            // console.log(eventPlace);
 
             if(place.row === eventPlace.row && place.seat === eventPlace.seat){
                 eventPlace.status='sold';
-                // console.log('hi');
             }
         }
     }
@@ -556,28 +555,28 @@ function eventSetSeats(documents,places,res){
 
 
 
-    // var mongoClientPromise = mongoClient.connect(async function (err, client) {
-    //     const db = client.db("phoneservice");
-    //     var answer = "0";
-    //     // var allProductsArray = db.collection("items").find().toArray();
-    //     try {
-    //
-    //         let o_id = new mongo.ObjectID(id);
-    //
-    //         await db.collection("phones").updateOne({"_id" : o_id }, { $set: {works: works } }, function(err, documents) {
-    //             if (err) throw err;
-    //             res.end(JSON.stringify({ msg: "OK" }));
-    //         });
-    //     } finally {
-    //         if (db) mongoClientPromise.close();
-    //         console.log("client.close()");
-    //
-    //     }
-    //
-    //
-    // });
+    var mongoClientPromise = mongoClient.connect(async function (err, client) {
+        const db = client.db(dbName);
+        var answer = "0";
+        // var allProductsArray = db.collection("items").find().toArray();
+        try {
 
+
+
+            await db.collection("events").updateOne({"_id" : o_id }, { $set: {places: eventPlacesOBJ } }, function(err, documents) {
+                if (err) throw err;
                 res.end(JSON.stringify({ msg: "OK" }));
+            });
+        } finally {
+            if (db) mongoClientPromise.close();
+            console.log("client.close()");
+
+        }
+
+
+    });
+
+                // res.end(JSON.stringify({ msg: "OK" }));
 
 }
 
