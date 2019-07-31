@@ -441,6 +441,7 @@ app.post('/orderadd',(req,res)=>{
 
 function orderAdd(eventId,places,res) {
 
+    console.log("We are in func orderadd");
 
 
     var mongoClientPromise = mongoClient.connect(async function (err, client) {
@@ -451,7 +452,7 @@ function orderAdd(eventId,places,res) {
             var answer = "0";
             // var allProductsArray = db.collection("phones").find().toArray();
             try {
-                let o_id = new mongo.ObjectID(id);
+                let o_id = new mongo.ObjectID(eventId);
 
                 await db.collection("events").find({ "_id" : o_id }).toArray(function (err, documents) {
                     console.log(documents);
