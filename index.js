@@ -12,13 +12,14 @@ const mongoClient = new MongoClient(url, { useNewUrlParser: true });
 const dbName="ticketservice";
 
 let timeCicle=0;
-setTimeout(function() {
+
+
+setInterval(function() {
+    console.log('setInterval');
     timeCicle++;
-    console.log('timeCicle');
     console.log(timeCicle);
-},2500);
 
-
+}, 1000);
 
 var app=express();
 
