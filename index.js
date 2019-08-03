@@ -504,7 +504,9 @@ function eventSetSeats(documents, places, res, uid, o_id){
             // console.log(eventPlace);
 
             if(place.row === eventPlace.row && place.seat === eventPlace.seat){
-                eventPlace.status='sold/'+uid;
+                eventPlace.status='sold';
+                eventPlace.uid=uid;
+                eventPlace.time=Date.now();
             }
         }
     }
@@ -544,6 +546,148 @@ function eventSetSeats(documents, places, res, uid, o_id){
 
 
 // -------------------------------------------------------- orders --------------------------------------------------------------------------
+
+
+
+// -------------------------------------------------------- reserve ------------------------------------------------------------------------
+
+app.post('/reserveadd',(req,res)=>{
+    console.log("We are in reserveadd");
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header('Access-Control-Allow-Headers', "*");
+    let eventId="";
+    let uid="";
+    let places=[];
+
+    let body = '';
+    // console.log(req);
+    // console.log(req.toString());
+    // console.log("req.data.body");
+    // console.log(req.body);
+
+    // req.on('data', chunk => {
+    //     body += chunk.toString(); // convert Buffer to string
+    //     console.log(body);
+    //     console.log(chunk);
+    // });
+    // body= req.body;
+    // req.on('end', () => {
+    var post = req.body;
+    // var post = qs.parse(body);
+    //     console.log("req.end");
+    //
+    //     console.log(body);
+    eventId=post.id;
+    uid=post.uid;
+    places=post.places;
+
+
+    reserveAdd(eventId, uid, places, res);
+    // res.end(JSON.stringify({ msg: "OK" }));
+    // });
+// console.log(req.body.gender);
+
+});
+
+function reserveAdd(eventId, uid, places, res) {
+
+    console.log("We are in func orderadd");
+
+
+    var mongoClientPromise = mongoClient.connect(async function (err, client) {
+        if (err){
+            console.error('An error occurred connecting to MongoDB: ',err);
+        }else {
+            const db = client.db(dbName);
+            var answer = "0";
+            // var allProductsArray = db.collection("phones").find().toArray();
+            try {
+                let o_id = new mongo.ObjectID(eventId);
+                console.log('o_id');
+                console.log(o_id);
+
+                await db.collection("events").find({ "_id" : o_id }).toArray(function (err, documents) {
+                    // console.log(documents);
+
+                    // res.end(JSON.stringify(documents));
+                    reserveSetSeats(documents, places, res, uid, o_id);
+
+                });
+            } finally {
+                if (db) mongoClientPromise.close();
+                console.log("client.close()");
+
+            }
+        }
+
+    });
+
+
+}
+
+function reserveSetSeats(documents, places, res, uid, o_id){
+    let event=documents[0];
+    console.log('event seats // uid');
+    console.log(uid);
+    // console.log('event.places');
+    // console.log(event.places);
+    // console.log('event.places.JSON.PARSE');
+    // console.log(JSON.parse(event.places));
+    let eventPlacesOBJ=JSON.parse(event.places);
+
+    for(let place of places){
+        // console.log(place);
+        for(let eventPlace of eventPlacesOBJ){
+            // console.log(eventPlace);
+
+            if(place.row === eventPlace.row && place.seat === eventPlace.seat){
+                eventPlace.status='reserved';
+                eventPlace.uid=uid;
+                eventPlace.time=Date.now();
+            }
+        }
+    }
+
+    // console.log(eventPlacesOBJ);
+
+    let eventPlaces=JSON.stringify(eventPlacesOBJ);
+
+
+
+
+    var mongoClientPromise = mongoClient.connect(async function (err, client) {
+        const db = client.db(dbName);
+        var answer = "0";
+        // var allProductsArray = db.collection("items").find().toArray();
+        try {
+
+
+
+            await db.collection("events").updateOne({"_id" : o_id }, { $set: {places: eventPlaces } }, function(err, documents) {
+                if (err) throw err;
+                res.end(JSON.stringify({ msg: "OK" }));
+            });
+        } finally {
+            if (db) mongoClientPromise.close();
+            console.log("client.close()");
+
+        }
+
+
+    });
+
+    // res.end(JSON.stringify({ msg: "OK" }));
+
+}
+
+
+
+
+// -------------------------------------------------------- reserve ------------------------------------------------------------------------
+
+
+
 
 
 // -------------------------------------------------------- old --------------------------------------------------------------------------
