@@ -11,6 +11,12 @@ const mongoClient = new MongoClient(url, { useNewUrlParser: true });
 // создаем объект MongoClient и передаем ему строку подключения
 const dbName="ticketservice";
 
+let timeCicle=0;
+setTimeout(function() {
+    timeCicle++;
+    console.log('timeCicle');
+    console.log(timeCicle);
+},2500);
 
 
 
