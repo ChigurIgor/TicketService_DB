@@ -419,6 +419,7 @@ app.post('/orderadd',(req,res)=>{
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.header('Access-Control-Allow-Headers', "*");
     let eventId="";
+    let uid="";
     let places=[];
 
     let body = '';
@@ -440,17 +441,18 @@ app.post('/orderadd',(req,res)=>{
     //
     //     console.log(body);
     eventId=post.id;
+    uid=post.uid;
     places=post.places;
 
 
-    orderAdd(eventId,places,res);
+    orderAdd(eventId, uid, places, res);
     // res.end(JSON.stringify({ msg: "OK" }));
     // });
 // console.log(req.body.gender);
 
 });
 
-function orderAdd(eventId,places,res) {
+function orderAdd(eventId, uid, places, res) {
 
     console.log("We are in func orderadd");
 
@@ -471,7 +473,7 @@ function orderAdd(eventId,places,res) {
                     // console.log(documents);
 
                     // res.end(JSON.stringify(documents));
-                    eventSetSeats(documents,places,res,o_id);
+                    eventSetSeats(documents, places, res, uid, o_id);
 
                 });
             } finally {
@@ -484,64 +486,12 @@ function orderAdd(eventId,places,res) {
     });
 
 
-
-
-
-
-
-
-
-
-
-
-    // var mongoClientPromise = mongoClient.connect(async function (err, client) {
-    //     const db = client.db(dbName);
-    //
-    //     const collection = db.collection("events");
-    //     let user = {
-    //         gender:gender,
-    //         name: name,
-    //         surname:surname,
-    //         company:company,
-    //         street:street,
-    //         house:house,
-    //         addinfo:addinfo,
-    //         postcode:postcode,
-    //         city:city,
-    //         country:country,
-    //         email:email,
-    //         password:password,
-    //         phone:phone,
-    //         addphone:addphone};
-    //     try {
-    //         await collection.insertOne(user, function (err, result) {
-    //
-    //             if (err) {
-    //                 return console.log(err);
-    //             }
-    //             console.log(result.ops);
-    //
-    //         });
-    //     } finally {
-    //         if (db) mongoClientPromise.close();
-    //         console.log("client.close()");
-    //         res.end(JSON.stringify({ msg: "OK" }));
-    //     }
-    // });
-
-// console.log('Places from func:');
-// console.log(places);
-//     console.log('places[0]');
-// console.log(places[0]);
-//             res.end(JSON.stringify({ msg: "OK" }));
-
-
 }
 
-function eventSetSeats(documents,places,res,o_id){
+function eventSetSeats(documents, places, res, uid, o_id){
     let event=documents[0];
-    console.log('event seats');
-    // console.log(event);
+    console.log('event seats // uid');
+    console.log(uid);
     // console.log('event.places');
     // console.log(event.places);
     // console.log('event.places.JSON.PARSE');
@@ -554,7 +504,7 @@ function eventSetSeats(documents,places,res,o_id){
             // console.log(eventPlace);
 
             if(place.row === eventPlace.row && place.seat === eventPlace.seat){
-                eventPlace.status='sold';
+                eventPlace.status='sold/'+uid;
             }
         }
     }
