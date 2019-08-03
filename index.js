@@ -505,7 +505,7 @@ function eventSetSeats(documents, places, res, uid, o_id){
 
             if(place.row === eventPlace.row && place.seat === eventPlace.seat){
                 eventPlace.status='sold';
-                eventPlace.uid=uid;
+                eventPlace.uid=uid[0];
                 eventPlace.time=Date.now();
             }
         }
@@ -630,21 +630,21 @@ function reserveSetSeats(documents, places, res, uid, o_id){
     let event=documents[0];
     console.log('event seats // uid');
     console.log(uid);
-    // console.log('event.places');
-    // console.log(event.places);
+    console.log('places');
+    console.log(places);
     // console.log('event.places.JSON.PARSE');
     // console.log(JSON.parse(event.places));
     let eventPlacesOBJ=JSON.parse(event.places);
 
     for(let place of places){
-        // console.log(place);
+        console.log(place);
         for(let eventPlace of eventPlacesOBJ){
             // console.log(eventPlace);
 
             if(place.row === eventPlace.row && place.seat === eventPlace.seat){
                 eventPlace.status='reserved';
-                // eventPlace.uid=uid;
-                // eventPlace.time=Date.now();
+                eventPlace.uid=uid[0];
+                eventPlace.time=Date.now();
             }
         }
     }
