@@ -19,7 +19,11 @@ setInterval(function() {
     timeCicle++;
     console.log(timeCicle);
 
-}, 1000);
+
+                                                                                    // ToDo --- add look on reserved seats here
+
+
+}, 30000);
 
 var app=express();
 
