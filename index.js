@@ -23,7 +23,7 @@ setInterval(function() {
     console.log(timeInMs);
 
     // ToDo --- add look on reserved seats here
-
+searchReserve(timeInMs);
 
 }, 30000);
 
@@ -683,8 +683,43 @@ function reserveSetSeats(documents, places, res, uid, o_id){
 
 }
 
+function searchReserve(time){
+    var mongoClientPromise = mongoClient.connect(async function (err, client) {
+        if (err){
+            console.error('An error occurred connecting to MongoDB: ',err);
+        }else {
+            const db = client.db(dbName);
+            var answer = "0";
+            // var allProductsArray = db.collection("phones").find().toArray();
+            try {
 
 
+                await db.collection("events").find().toArray(function (err, documents) {
+                    console.log(documents);
+
+                    searchReservedSeats(documents);
+
+
+                });
+            } finally {
+                if (db) mongoClientPromise.close();
+                console.log("client.close()");
+
+            }
+        }
+
+    });
+}
+
+
+function searchReservedSeats(documents){
+    console.log('searchReservedSeats');
+    console.log(documents);
+    console.log('  ');
+    console.log('  ');
+    console.log('  ');
+    console.log(documents[0]);
+}
 
 // -------------------------------------------------------- reserve ------------------------------------------------------------------------
 
