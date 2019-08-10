@@ -726,11 +726,14 @@ function searchReservedSeats(events, time){
 
                 }
             }
-         event.places=seats;
+         event.places=JSON.stringify(seats);
 
     }
 
 
+    console.log('');
+    console.log('');
+    console.log('');
     console.log('events after func');
     console.log(events);
 }
