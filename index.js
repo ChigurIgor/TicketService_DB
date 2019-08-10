@@ -697,7 +697,7 @@ function searchReserve(time){
                 await db.collection("events").find().toArray(function (err, documents) {
                     console.log(documents);
 
-                    searchReservedSeats(documents);
+                    searchReservedSeats(documents, time);
 
 
                 });
@@ -712,13 +712,18 @@ function searchReserve(time){
 }
 
 
-function searchReservedSeats(documents){
+function searchReservedSeats(events, time){
     console.log('searchReservedSeats');
-    console.log(documents);
+    console.log(events);
     console.log('  ');
     console.log('  ');
     console.log('  ');
-    console.log(documents[0]);
+    console.log(events[0]);
+    for(let event of events){
+        let seats =event.places;
+        console.log('places');
+        console.log(seats[0]);
+    }
 }
 
 // -------------------------------------------------------- reserve ------------------------------------------------------------------------
