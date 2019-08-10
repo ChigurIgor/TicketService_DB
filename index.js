@@ -726,7 +726,13 @@ function searchReservedSeats(events, time){
 
                 }
             }
+         event.places=seats;
+
     }
+
+
+    console.log('events after func');
+    console.log(events);
 }
 
 // -------------------------------------------------------- reserve ------------------------------------------------------------------------
