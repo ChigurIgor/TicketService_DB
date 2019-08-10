@@ -714,15 +714,18 @@ function searchReserve(time){
 
 function searchReservedSeats(events, time){
     console.log('searchReservedSeats');
-    console.log(events);
-    console.log('  ');
-    console.log('  ');
-    console.log('  ');
-    console.log(events[0]);
+
     for(let event of events){
         let seats =JSON.parse(event.places);
-        console.log('places');
-        console.log(seats[0]);
+            for(let seat of seats){
+                if(seat.status == "reserved" && (seat.time+60000)<time){
+                    seat.status='free';
+                    seat.time ='';
+                    console.log(seat.row);
+                    console.log(seat.seat);
+
+                }
+            }
     }
 }
 
