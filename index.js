@@ -11,8 +11,8 @@ const mongoClient = new MongoClient(url, { useNewUrlParser: true });
 // создаем объект MongoClient и передаем ему строку подключения
 const dbName="ticketservice";
 
-let timeCicle=0;
-let timeout=60000;
+// let timeCicle=0;
+// let timeout=60000;
 
 // setInterval(function() {
 //     console.log('setInterval');
@@ -159,7 +159,6 @@ app.post('/getevents',(req,res)=>{
 });
 
 function getEvents(id,res){
-console.log("getEvents");
     var mongoClientPromise = mongoClient.connect(async function (err, client) {
         if (err){
             console.error('An error occurred connecting to MongoDB: ',err);
@@ -171,7 +170,7 @@ console.log("getEvents");
 
 
                 await db.collection("events").find().toArray(function (err, documents) {
-                    console.log(documents);
+                    // console.log(documents);
 
                     res.end(JSON.stringify(documents));
 
