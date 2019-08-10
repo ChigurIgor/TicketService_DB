@@ -505,7 +505,7 @@ function eventSetSeats(documents, places, res, uid, o_id){
             // console.log(eventPlace);
 
             if(place.row === eventPlace.row && place.seat === eventPlace.seat){
-                if(place.status==="reserved" ) {
+                if(eventPlace.status==="reserved" && eventPlace.uid==uid[0]) {
                     eventPlace.status = 'sold';
                     eventPlace.uid = uid[0];
                     eventPlace.time = Date.now();
