@@ -720,7 +720,7 @@ function searchReservedSeats(events, time){
     console.log('  ');
     console.log(events[0]);
     for(let event of events){
-        let seats =event.places;
+        let seats =JSON.parse(event.places);
         console.log('places');
         console.log(seats[0]);
     }
