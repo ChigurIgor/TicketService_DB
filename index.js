@@ -650,6 +650,7 @@ function reserveSetSeats(documents, places, res, uid, o_id){
             if(place.row === eventPlace.row && place.seat === eventPlace.seat){
                 eventPlace.status='reserved';
                 eventPlace.uid=uid[0];
+                console.log(uid[0]);
                 eventPlace.time=Date.now();
             }
         }
