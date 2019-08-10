@@ -505,9 +505,14 @@ function eventSetSeats(documents, places, res, uid, o_id){
             // console.log(eventPlace);
 
             if(place.row === eventPlace.row && place.seat === eventPlace.seat){
-                eventPlace.status='sold';
-                eventPlace.uid=uid[0];
-                eventPlace.time=Date.now();
+                if(place.status=="reserved" && place.uid==uid[0]) {
+                    eventPlace.status = 'sold';
+                    eventPlace.uid = uid[0];
+                    eventPlace.time = Date.now();
+                }
+                else {
+                    res.end(JSON.stringify({ msg: "These places are no longer available" }));
+                }
             }
         }
     }
