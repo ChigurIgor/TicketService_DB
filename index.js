@@ -12,7 +12,7 @@ const mongoClient = new MongoClient(url, { useNewUrlParser: true });
 const dbName="ticketservice";
 
 let timeCicle=0;
-
+let timeout=30000;
 
 setInterval(function() {
     console.log('setInterval');
@@ -22,10 +22,9 @@ setInterval(function() {
     var timeInMs = Date.now();
     console.log(timeInMs);
 
-    // ToDo --- add look on reserved seats here
-searchReserve(timeInMs);
+    searchReserve(timeInMs);
 
-}, 30000);
+}, timeout);
 
 var app=express();
 
@@ -714,11 +713,12 @@ function searchReserve(time){
 
 function searchReservedSeats(events, time){
     console.log('searchReservedSeats');
+    let timeDifference=600000;
 
     for(let event of events){
         let seats =JSON.parse(event.places);
             for(let seat of seats){
-                if(seat.status == "reserved" && (seat.time+60000)<time){
+                if(seat.status == "reserved" && (seat.time+timeDifference)<time){
                     seat.status='free';
                     seat.time ='';
                     seat.uid ='';
