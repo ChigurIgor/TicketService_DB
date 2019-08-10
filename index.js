@@ -12,7 +12,7 @@ const mongoClient = new MongoClient(url, { useNewUrlParser: true });
 const dbName="ticketservice";
 
 let timeCicle=0;
-let timeout=30000;
+let timeout=60000;
 
 setInterval(function() {
     console.log('setInterval');
