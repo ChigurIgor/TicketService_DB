@@ -721,6 +721,7 @@ function searchReservedSeats(events, time){
                 if(seat.status == "reserved" && (seat.time+60000)<time){
                     seat.status='free';
                     seat.time ='';
+                    seat.uid ='';
                     console.log(seat.row);
                     console.log(seat.seat);
 
