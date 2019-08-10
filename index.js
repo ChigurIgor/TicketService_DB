@@ -153,12 +153,13 @@ app.post('/getevents',(req,res)=>{
     //
     //     getEvents(id,res);
     // });
+
     getEvents(id,res);
 
 });
 
 function getEvents(id,res){
-
+console.log("getEvents");
     var mongoClientPromise = mongoClient.connect(async function (err, client) {
         if (err){
             console.error('An error occurred connecting to MongoDB: ',err);
