@@ -695,7 +695,7 @@ function searchReserve(time){
 
 
                 await db.collection("events").find().toArray(function (err, documents) {
-                    console.log(documents);
+                    // console.log(documents);
 
                     searchReservedSeats(documents, time);
 
@@ -727,16 +727,38 @@ function searchReservedSeats(events, time){
 
                 }
             }
-         event.places=JSON.stringify(seats);
+         let eventPlaces=JSON.stringify(seats);
+        let o_id = new mongo.ObjectID(event._id);
+            console.log('o_id= '+o_id);
+
+        var mongoClientPromise = mongoClient.connect(async function (err, client) {
+            const db = client.db(dbName);
+            var answer = "0";
+            // var allProductsArray = db.collection("items").find().toArray();
+            try {
+
+
+
+                await db.collection("events").updateOne({"_id" : o_id }, { $set: {places: eventPlaces } }, function(err, documents) {
+                    if (err) throw err;
+                });
+            } finally {
+                if (db) mongoClientPromise.close();
+                console.log("client.close()");
+
+            }
+
+
+        });
+
+
+
+
 
     }
 
 
-    console.log('');
-    console.log('');
-    console.log('');
-    console.log('events after func');
-    console.log(events);
+
 }
 
 // -------------------------------------------------------- reserve ------------------------------------------------------------------------
