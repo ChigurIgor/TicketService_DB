@@ -19,8 +19,10 @@ setInterval(function() {
     timeCicle++;
     console.log(timeCicle);
 
+    var timeInMs = Date.now();
+    console.log(timeInMs);
 
-                                                                                    // ToDo --- add look on reserved seats here
+    // ToDo --- add look on reserved seats here
 
 
 }, 30000);
