@@ -422,6 +422,12 @@ app.post('/orderadd',(req,res)=>{
     let eventId="";
     let uid="";
     let places=[];
+    let paymentID="";
+    let paymentCart="";
+    let paymentTime="";
+    let paymentEmail="";
+    let paymentPayerId="";
+    let paymentPayerAddress="";
 
     let body = '';
     // console.log(req);
@@ -444,18 +450,29 @@ app.post('/orderadd',(req,res)=>{
     eventId=post.id;
     uid=post.uid;
     places=post.places;
+    paymentID=post.paymentID;
+    paymentCart=post.paymentCart;
+    paymentTime=post.paymentTime;
+    paymentEmail=post.paymentEmail;
+    paymentPayerId=post.paymentPayerId;
+    paymentPayerAddress=post.paymentPayerAddress;
 
-
-    orderAdd(eventId, uid, places, res);
+    orderAdd(eventId, uid, places,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress, res);
     // res.end(JSON.stringify({ msg: "OK" }));
     // });
 // console.log(req.body.gender);
 
 });
 
-function orderAdd(eventId, uid, places, res) {
+function orderAdd(eventId, uid, places,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress, res) {
 
     console.log("We are in func orderadd");
+    console.log(paymentID);
+    console.log(paymentCart);
+    console.log(paymentTime);
+    console.log(paymentEmail);
+    console.log(paymentPayerId);
+    console.log(paymentPayerAddress);
 
 
     var mongoClientPromise = mongoClient.connect(async function (err, client) {
@@ -534,6 +551,8 @@ function eventSetSeats(documents, places, res, uid, o_id){
 
             await db.collection("events").updateOne({"_id" : o_id }, { $set: {places: eventPlaces } }, function(err, documents) {
                 if (err) throw err;
+
+                //ToDo   ---------    Add order to the order collection ----
                 res.end(JSON.stringify({ msg: "OK" }));
             });
         } finally {
