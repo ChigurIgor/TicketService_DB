@@ -457,14 +457,14 @@ app.post('/orderadd',(req,res)=>{
     paymentPayerId=post.paymentPayerId;
     paymentPayerAddress=post.paymentPayerAddress;
 
-    orderAdd(eventId, uid, places,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress, res);
+    orderAddStart(eventId, uid, places,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress, res);
     // res.end(JSON.stringify({ msg: "OK" }));
     // });
 // console.log(req.body.gender);
 
 });
 
-function orderAdd(eventId, uid, places,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress, res) {
+function orderAddStart(eventId, uid, places,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress, res) {
 
     console.log("We are in func orderadd");
     console.log(paymentID);
@@ -491,7 +491,7 @@ function orderAdd(eventId, uid, places,paymentID,paymentCart,paymentTime,payment
                     // console.log(documents);
 
                     // res.end(JSON.stringify(documents));
-                    eventSetSeats(documents, places, res, uid, o_id);
+                    eventSetSeats(documents, places, res, uid, o_id,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress,);
 
                 });
             } finally {
@@ -506,7 +506,7 @@ function orderAdd(eventId, uid, places,paymentID,paymentCart,paymentTime,payment
 
 }
 
-function eventSetSeats(documents, places, res, uid, o_id){
+function eventSetSeats(documents, places, res, uid, o_id,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress,){
     let event=documents[0];
     console.log('event seats // uid');
     console.log(uid);
@@ -553,7 +553,7 @@ function eventSetSeats(documents, places, res, uid, o_id){
                 if (err) throw err;
 
                 //ToDo   ---------    Add order to the order collection ----
-                res.end(JSON.stringify({ msg: "OK" }));
+                orderAdd( places, res, uid, o_id,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress);
             });
         } finally {
             if (db) mongoClientPromise.close();
@@ -567,6 +567,58 @@ function eventSetSeats(documents, places, res, uid, o_id){
                 // res.end(JSON.stringify({ msg: "OK" }));
 
 }
+
+
+
+function orderAdd( places, res, uid, o_id,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress){
+    console.log('orderAdd');
+
+    var mongoClientPromise = mongoClient.connect(async function (err, client) {
+        const db = client.db(dbName);
+
+        const collection = db.collection("orders");
+        let order = {
+            uid:uid,
+            eventId: o_id,
+            paymentID:paymentID,
+            paymentCart:paymentCart,
+            paymentTime:paymentTime,
+            paymentEmail:paymentEmail,
+            paymentPayerId:paymentPayerId,
+            paymentPayerAddress:paymentPayerAddress,
+            places:places,
+            };
+        try {
+            await collection.insertOne(order, function (err, result) {
+
+                if (err) {
+                    return console.log(err);
+                }
+                console.log(result.ops);
+
+            });
+        } finally {
+            if (db) mongoClientPromise.close();
+            console.log("client.close()");
+            res.end(JSON.stringify({ msg: "OK" }));
+        }
+    });
+
+    // res.end(JSON.stringify({ msg: "OK" }));
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
