@@ -595,12 +595,12 @@ function orderAdd( places, res, uid, eventId,paymentID,paymentCart,paymentTime,p
                     return console.log(err);
                 }
                 console.log(result.ops);
+                res.end(JSON.stringify({ msg: "OK" }));
 
             });
         } finally {
             if (db) mongoClientPromise4.close();
             console.log("client.close()");
-            res.end(JSON.stringify({ msg: "OK" }));
         }
     });
 
