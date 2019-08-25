@@ -475,7 +475,7 @@ function orderAddStart(eventId, uid, places,paymentID,paymentCart,paymentTime,pa
     console.log(paymentPayerAddress);
 
 
-    var mongoClientPromise = mongoClient.connect(async function (err, client) {
+    var mongoClientPromise6 = mongoClient.connect(async function (err, client) {
         if (err){
             console.error('An error occurred connecting to MongoDB: ',err);
         }else {
@@ -495,7 +495,7 @@ function orderAddStart(eventId, uid, places,paymentID,paymentCart,paymentTime,pa
 
                 });
             } finally {
-                if (db) mongoClientPromise.close();
+                if (db) mongoClientPromise6.close();
                 console.log("client.close()");
 
             }
@@ -541,7 +541,7 @@ function eventSetSeats(documents, places, res, uid, o_id,paymentID,paymentCart,p
 
 
 
-    var mongoClientPromise = mongoClient.connect(async function (err, client) {
+    var mongoClientPromise5 = mongoClient.connect(async function (err, client) {
         const db = client.db(dbName);
         var answer = "0";
         // var allProductsArray = db.collection("items").find().toArray();
@@ -556,7 +556,7 @@ function eventSetSeats(documents, places, res, uid, o_id,paymentID,paymentCart,p
                 orderAdd( places, res, uid, eventId,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress);
             });
         } finally {
-            if (db) mongoClientPromise.close();
+            if (db) mongoClientPromise5.close();
             console.log("client.close()");
 
         }
@@ -573,7 +573,7 @@ function eventSetSeats(documents, places, res, uid, o_id,paymentID,paymentCart,p
 function orderAdd( places, res, uid, eventId,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress){
     console.log('orderAdd');
 
-    var mongoClientPromise = mongoClient.connect(async function (err, client) {
+    var mongoClientPromise4 = mongoClient.connect(async function (err, client) {
         const db = client.db(dbName);
 
         const collection = db.collection("orders");
@@ -598,7 +598,7 @@ function orderAdd( places, res, uid, eventId,paymentID,paymentCart,paymentTime,p
 
             });
         } finally {
-            if (db) mongoClientPromise.close();
+            if (db) mongoClientPromise4.close();
             console.log("client.close()");
             res.end(JSON.stringify({ msg: "OK" }));
         }
