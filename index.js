@@ -491,7 +491,7 @@ function orderAddStart(eventId, uid, places,paymentID,paymentCart,paymentTime,pa
                     // console.log(documents);
 
                     // res.end(JSON.stringify(documents));
-                    eventSetSeats(documents, places, res, uid, o_id,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress,);
+                    eventSetSeats(documents, places, res, uid, o_id,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress,eventId);
 
                 });
             } finally {
@@ -506,7 +506,7 @@ function orderAddStart(eventId, uid, places,paymentID,paymentCart,paymentTime,pa
 
 }
 
-function eventSetSeats(documents, places, res, uid, o_id,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress,){
+function eventSetSeats(documents, places, res, uid, o_id,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress,eventId){
     let event=documents[0];
     console.log('event seats // uid');
     console.log(uid);
@@ -553,7 +553,7 @@ function eventSetSeats(documents, places, res, uid, o_id,paymentID,paymentCart,p
                 if (err) throw err;
 
                 //ToDo   ---------    Add order to the order collection ----
-                orderAdd( places, res, uid, o_id,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress);
+                // orderAdd( places, res, uid, eventId,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress);
             });
         } finally {
             if (db) mongoClientPromise.close();
@@ -570,7 +570,7 @@ function eventSetSeats(documents, places, res, uid, o_id,paymentID,paymentCart,p
 
 
 
-function orderAdd( places, res, uid, o_id,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress){
+function orderAdd( places, res, uid, eventId,paymentID,paymentCart,paymentTime,paymentEmail,paymentPayerId,paymentPayerAddress){
     console.log('orderAdd');
 
     var mongoClientPromise = mongoClient.connect(async function (err, client) {
@@ -579,7 +579,7 @@ function orderAdd( places, res, uid, o_id,paymentID,paymentCart,paymentTime,paym
         const collection = db.collection("orders");
         let order = {
             uid:uid,
-            eventId: o_id,
+            eventId: eventId,
             paymentID:paymentID,
             paymentCart:paymentCart,
             paymentTime:paymentTime,
