@@ -3,6 +3,8 @@ const bodyParser= require("body-parser");
 var qs = require('querystring');
 var mongo = require('mongodb');
 const pdfMakePrinter = require('pdfmake/src/printer');
+var path = require('path');
+var Printer = require('pdfmake');
 
 
 const PORT = process.env.PORT || 5000;
@@ -901,7 +903,14 @@ app.post('/getpdf',(req,res)=>{
 
 });
 
+function fontPath(file) {
+    return path.resolve('pdfmake', 'test-env', 'tests', 'fonts', file);
+}
+
+
+
 function generatePdf(docDefinition, callback) {
+
     try {
         const fontDescriptors = {
             Roboto: {
