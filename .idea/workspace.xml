@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab172c3a-d46c-49cb-b896-0244eb25f6d7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/node_modules/roboto-font/css/fonts.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/roboto-font/less/fonts.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/roboto-font/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/roboto-font/scss/css3/_font-face.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/roboto-font/scss/css3/_shared.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/roboto-font/scss/fonts.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +120,8 @@
       <workItem from="1566905121614" duration="1549000" />
       <workItem from="1566906929125" duration="1042000" />
       <workItem from="1566908741629" duration="1454000" />
-      <workItem from="1566910622712" duration="1630000" />
+      <workItem from="1566910622712" duration="1787000" />
+      <workItem from="1566912438916" duration="283000" />
     </task>
     <servers />
   </component>
