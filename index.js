@@ -912,9 +912,10 @@ function fontPath(file) {
 function generatePdf(docDefinition, callback) {
 
     try {
-        const fontDescriptors = {
-    
-        };         const printer = new pdfMakePrinter(fontDescriptors);
+        // const fontDescriptors = {
+        //
+        // };
+        const printer = new pdfMakePrinter(fontDescriptors);
         const doc = printer.createPdfKitDocument(docDefinition);
 
         let chunks = [];
