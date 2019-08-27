@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser= require("body-parser");
 var qs = require('querystring');
 var mongo = require('mongodb');
+const pdfMakePrinter = require('pdfmake/src/printer');
+
 
 const PORT = process.env.PORT || 5000;
 
@@ -839,6 +841,92 @@ function searchReservedSeats(events, time){
 }
 
 // -------------------------------------------------------- reserve ------------------------------------------------------------------------
+
+
+// -------------------------------------------------------- PDF ------------------------------------------------------------------------
+
+app.post('/getpdf',(req,res)=>{
+    console.log("We are in getpdf");
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header('Access-Control-Allow-Headers', "*");
+    let eventId="";
+    let uid="";
+    let places=[];
+    let paymentID="";
+    let paymentCart="";
+    let paymentTime="";
+    let paymentEmail="";
+    let paymentPayerId="";
+    let paymentPayerAddress="";
+
+    let body = '';
+    // console.log(req);
+    // console.log(req.toString());
+    // console.log("req.data.body");
+    // console.log(req.body);
+
+    // req.on('data', chunk => {
+    //     body += chunk.toString(); // convert Buffer to string
+    //     console.log(body);
+    //     console.log(chunk);
+    // });
+    // body= req.body;
+    // req.on('end', () => {
+    var post = req.body;
+    // var post = qs.parse(body);
+    //     console.log("req.end");
+    //
+    //     console.log(body);
+    eventId=post.id;
+    uid=post.uid;
+    places=post.places;
+    paymentID=post.paymentID;
+    paymentCart=post.paymentCart;
+    paymentTime=post.paymentTime;
+    paymentEmail=post.paymentEmail;
+    paymentPayerId=post.paymentPayerId;
+    paymentPayerAddress=post.paymentPayerAddress;
+
+    const docDefinition = {
+        content: ['This will show up in the file created']
+    };
+
+
+    generatePdf(docDefinition, (response) => {
+        res.send(response); // sends a base64 encoded string to client
+    });    // res.end(JSON.stringify({ msg: "OK" }));
+    // });
+// console.log(req.body.gender);
+
+});
+
+function generatePdf(docDefinition, callback) {
+    try {
+        // const fontDescriptors = { ... };
+        const printer = new pdfMakePrinter(fontDescriptors);
+        const doc = printer.createPdfKitDocument(docDefinition);
+
+        let chunks = [];
+
+        doc.on('data', (chunk) => {
+            chunks.push(chunk);
+        });
+
+        doc.on('end', () => {
+            const result = Buffer.concat(chunks);
+            callback('data:application/pdf;base64,' + result.toString('base64'));
+        });
+
+        doc.end();
+
+    } catch(err) {
+        throw(err);
+    }
+}
+
+
+// -------------------------------------------------------- PDF ------------------------------------------------------------------------
 
 
 

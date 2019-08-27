@@ -2,36 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab172c3a-d46c-49cb-b896-0244eb25f6d7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/gulpfile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/browser-extensions/pdfMake.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/browser-extensions/virtual-fs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/columnCalculator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/docMeasure.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/docPreprocessor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/documentContext.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/elementWriter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/fontProvider.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/helpers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/imageMeasure.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/layoutBuilder.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/line.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/pageElementWriter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/pdfKitEngine.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/printer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/qrEnc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/standardPageSizes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/styleContextStack.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/svgMeasure.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/tableProcessor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/textDecorator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/textTools.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/src/traversalTracker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/webpack-standardfonts.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/pdfmake/webpack.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +113,8 @@
       <workItem from="1566759956016" duration="1757000" />
       <workItem from="1566761827606" duration="1649000" />
       <workItem from="1566763639247" duration="1735000" />
-      <workItem from="1566892478803" duration="349000" />
+      <workItem from="1566892478803" duration="786000" />
+      <workItem from="1566905121614" duration="1109000" />
     </task>
     <servers />
   </component>
