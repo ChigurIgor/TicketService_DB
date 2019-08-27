@@ -896,6 +896,7 @@ app.post('/getpdf',(req,res)=>{
 
 
     generatePdf(docDefinition, (response) => {
+        res.setHeader('Content-Type', 'application/pdf');
         res.send(response); // sends a base64 encoded string to client
     });    // res.end(JSON.stringify({ msg: "OK" }));
     // });
