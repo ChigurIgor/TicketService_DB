@@ -903,8 +903,14 @@ app.post('/getpdf',(req,res)=>{
 
 function generatePdf(docDefinition, callback) {
     try {
-        // const fontDescriptors = { ... };
-        const printer = new pdfMakePrinter(fontDescriptors);
+        const fontDescriptors = {
+            Roboto: {
+                normal: fontPath('Roboto-Regular.ttf'),
+                bold: fontPath('Roboto-Medium.ttf'),
+                italics: fontPath('Roboto-Italic.ttf'),
+                bolditalics: fontPath('Roboto-Italic.ttf'),
+            }
+        };         const printer = new pdfMakePrinter(fontDescriptors);
         const doc = printer.createPdfKitDocument(docDefinition);
 
         let chunks = [];
