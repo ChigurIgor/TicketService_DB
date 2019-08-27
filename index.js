@@ -912,7 +912,12 @@ function fontPath(file) {
 function generatePdf(docDefinition, callback) {
 
     try {
-        const fontDescriptors = { ... };
+        const fontDescriptors = {
+            Roboto: {
+                normal: path.resolve('src', 'fonts', 'Roboto.ttf'),
+                bold: path.resolve('src', 'fonts', 'Roboto-Bold.ttf'),
+            }
+        };
 
         const printer = new pdfMakePrinter(fontDescriptors);
         const doc = printer.createPdfKitDocument(docDefinition);
