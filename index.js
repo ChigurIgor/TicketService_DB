@@ -598,7 +598,7 @@ function orderAdd( places, res, uid, eventId,paymentID,paymentCart,paymentTime,p
                 if (err) {
                     return console.log(err);
                 }
-                res.end(JSON.stringify({ msg: "OK" , orederId: result.ops[0]._id}));
+                res.end(JSON.stringify({ msg: "OK" , orderId: result.ops[0]._id}));
 
             });
         } finally {
