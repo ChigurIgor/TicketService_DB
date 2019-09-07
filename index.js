@@ -880,6 +880,7 @@ app.post('/getpdf',(req,res)=>{
     //
     //     console.log(body);
     eventId=post.id;
+    orderId=post.orderId;
     uid=post.uid;
     places=post.places;
     paymentID=post.paymentID;
@@ -888,7 +889,13 @@ app.post('/getpdf',(req,res)=>{
     paymentEmail=post.paymentEmail;
     paymentPayerId=post.paymentPayerId;
     paymentPayerAddress=post.paymentPayerAddress;
-
+console.log('');
+console.log('');
+console.log('orderId');
+console.log(orderId);
+    console.log('');
+    console.log('');
+    
     const docDefinition = {
         content: ['This will show up in the file created']
     };
