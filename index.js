@@ -598,6 +598,8 @@ function orderAdd( places, res, uid, eventId,paymentID,paymentCart,paymentTime,p
                 if (err) {
                     return console.log(err);
                 }
+                console.log("ORDER ADDED");
+                console.log(result);
                 console.log(result.ops);
                 res.end(JSON.stringify({ msg: "OK" }));
 
