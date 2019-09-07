@@ -933,7 +933,7 @@ function generatePdf(docDefinition, callback) {
 
         doc.on('end', () => {
             const result = Buffer.concat(chunks);
-            callback('data:application/pdf;' + result.toString('base64'));
+            callback('data:application/pdf;base64,' + result.toString('base64'));
         });
 
         doc.end();
