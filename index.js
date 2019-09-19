@@ -614,7 +614,34 @@ function orderAdd( places, res, uid, eventId,paymentID,paymentCart,paymentTime,p
 
 
 
+ function getOrderById(id){
 
+    var mongoClientPromise = mongoClient.connect(async function (err, client) {
+        if (err){
+            console.error('An error occurred connecting to MongoDB: ',err);
+        }else {
+            const db = client.db(dbName);
+            var answer = "0";
+            // var allProductsArray = db.collection("phones").find().toArray();
+            try {
+                let o_id = new mongo.ObjectID(id);
+
+                await db.collection("events").find({ "_id" : o_id }).toArray(function (err, documents) {
+                    // console.log(documents);
+
+                 return  JSON.stringify(documents);
+
+
+                });
+            } finally {
+                if (db) mongoClientPromise.close();
+                console.log("client.close()");
+
+            }
+        }
+
+    });
+}
 
 
 
@@ -851,51 +878,25 @@ app.post('/getpdf',(req,res)=>{
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.header('Access-Control-Allow-Headers', "*");
-    let eventId="";
-    let uid="";
-    let places=[];
-    let paymentID="";
-    let paymentCart="";
-    let paymentTime="";
-    let paymentEmail="";
-    let paymentPayerId="";
-    let paymentPayerAddress="";
 
-    let body = '';
-    // console.log(req);
-    // console.log(req.toString());
-    // console.log("req.data.body");
-    // console.log(req.body);
 
-    // req.on('data', chunk => {
-    //     body += chunk.toString(); // convert Buffer to string
-    //     console.log(body);
-    //     console.log(chunk);
-    // });
-    // body= req.body;
-    // req.on('end', () => {
     var post = req.body;
-    // var post = qs.parse(body);
-    //     console.log("req.end");
-    //
-    //     console.log(req);
-        // console.log(post);
-    eventId=post.id;
+
     let orderId = post.orderId;
-    uid=post.uid;
-    places=post.places;
-    paymentID=post.paymentID;
-    paymentCart=post.paymentCart;
-    paymentTime=post.paymentTime;
-    paymentEmail=post.paymentEmail;
-    paymentPayerId=post.paymentPayerId;
-    paymentPayerAddress=post.paymentPayerAddress;
+
 console.log('');
 console.log('');
 console.log('orderId');
 console.log(orderId);
     console.log('');
     console.log('');
+
+    let order = getOrderById(orderId);
+    console.log('order');
+    console.log(order);
+
+
+
 
     const docDefinition = {
         content: ['This is your order id:'+orderId+ '\n next \n next']
@@ -905,9 +906,8 @@ console.log(orderId);
     generatePdf(docDefinition, (response) => {
         res.setHeader('Content-Type', 'application/pdf');
         res.send(response); // sends a base64 encoded string to client
-    });    // res.end(JSON.stringify({ msg: "OK" }));
-    // });
-// console.log(req.body.gender);
+    });
+
 
 });
 
