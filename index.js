@@ -954,7 +954,7 @@ function sendPDF(documents, res) {
 
     let content = [];
     content.push('This is your order id:'+123+ '\n ');
-    for( let plase of places){
+    for( let plase of documents[0].places){
         content.push(plase)
     }
     const docDefinition = {
