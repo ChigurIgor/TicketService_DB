@@ -5,7 +5,7 @@ var mongo = require('mongodb');
 const pdfMakePrinter = require('pdfmake/src/printer');
 var path = require('path');
 var Printer = require('pdfmake');
-var wait = require('waitfor');
+var wait = require('wait.for');
 
 
 const PORT = process.env.PORT || 5000;
