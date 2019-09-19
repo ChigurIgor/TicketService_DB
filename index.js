@@ -953,7 +953,7 @@ function sendPDF(documents, res) {
     console.log(documents[0].places);
 
     let content = [];
-    content.push('This is your order id:'+123+ '\n ');
+    content.push('This is your order id:'+documents[0]._id+ '\n ');
     for( let plase of documents[0].places){
         content.push("row: "+ plase.row + ", seat: "+plase.seat+" \n");
     }
