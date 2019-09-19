@@ -878,8 +878,8 @@ app.post('/getpdf',(req,res)=>{
     // var post = qs.parse(body);
     //     console.log("req.end");
     //
-    //     console.log(req);
-        console.log(post);
+        console.log(req);
+        // console.log(post);
     eventId=post.id;
     let orderId = post.orderId;
     uid=post.uid;
