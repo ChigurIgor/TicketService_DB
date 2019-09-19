@@ -878,7 +878,7 @@ app.post('/getpdf',(req,res)=>{
     // var post = qs.parse(body);
     //     console.log("req.end");
     //
-        console.log(req);
+    //     console.log(req);
         // console.log(post);
     eventId=post.id;
     let orderId = post.orderId;
@@ -940,7 +940,10 @@ function generatePdf(docDefinition, callback) {
 
         doc.on('end', () => {
             const result = Buffer.concat(chunks);
-            callback('data:application/pdf;base64,' + result.toString('base64'));
+            let obj={};
+            obj.doc='data:application/pdf;base64,' + result.toString('base64');
+            callback(obj);
+            // callback('data:application/pdf;base64,' + result.toString('base64'));
         });
 
         doc.end();
