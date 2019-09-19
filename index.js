@@ -627,7 +627,8 @@ function orderAdd( places, res, uid, eventId,paymentID,paymentCart,paymentTime,p
                 let o_id = new mongo.ObjectID(id);
 
                 await db.collection("orders").find({ "_id" : o_id }).toArray(function (err, documents) {
-                    // console.log(documents);
+                    console.log("documents in getOrderById");
+                    console.log(documents);
 
                  return  JSON.stringify(documents);
 
