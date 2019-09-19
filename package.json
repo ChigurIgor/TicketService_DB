@@ -16,6 +16,7 @@
     "mongodb": "^3.2.7",
     "pdfmake": "^0.1.58",
     "roboto-font": "^0.1.0",
-    "typeface-roboto": "0.0.75"
+    "typeface-roboto": "0.0.75",
+    "wait.for": "^0.6.6"
   }
 }
