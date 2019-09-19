@@ -898,7 +898,7 @@ console.log(orderId);
     console.log('');
 
     const docDefinition = {
-        content: ['This will show up in the file created']
+        content: ['This is your order id:'+orderId+ '\n next \n next']
     };
 
 
