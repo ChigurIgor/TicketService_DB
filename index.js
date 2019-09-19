@@ -949,6 +949,9 @@ function sendPDF(documents, res) {
 
     console.log("documents in sendPDF");
     console.log(documents);
+    console.log("Places");
+    console.log(documents.places);
+
 
     const docDefinition = {
         content: ['This is your order id:'+orderId+ '\n next \n next']
