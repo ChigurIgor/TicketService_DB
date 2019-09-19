@@ -615,7 +615,7 @@ function orderAdd( places, res, uid, eventId,paymentID,paymentCart,paymentTime,p
 
 
 
- async function getOrderById(id){
+  function getOrderById(id, res){
 
     var mongoClientPromise = mongoClient.connect(async function (err, client) {
         if (err){
@@ -628,10 +628,11 @@ function orderAdd( places, res, uid, eventId,paymentID,paymentCart,paymentTime,p
                 let o_id = new mongo.ObjectID(id);
 
                 await db.collection("orders").find({ "_id" : o_id }).toArray(function (err, documents) {
-                    console.log("documents in getOrderById");
-                    console.log(documents);
 
-                 return  JSON.stringify(documents);
+
+                    sendPDF(documents,res);
+
+
 
 
                 });
@@ -893,18 +894,10 @@ console.log(orderId);
     console.log('');
     console.log('');
 
-    let order = wait.for(getOrderById(orderId));
-    console.log(order);
+    // let order = wait.for(getOrderById(orderId));
+    getOrderById(orderId, res);
+    // console.log(order);
 
-    const docDefinition = {
-        content: ['This is your order id:'+orderId+ '\n next \n next']
-    };
-
-
-    generatePdf(docDefinition, (response) => {
-        res.setHeader('Content-Type', 'application/pdf');
-        res.send(response); // sends a base64 encoded string to client
-    });
 
 
 });
@@ -951,6 +944,21 @@ function generatePdf(docDefinition, callback) {
     }
 }
 
+
+function sendPDF(documents, res) {
+
+    console.log("documents in sendPDF");
+    console.log(documents);
+
+    const docDefinition = {
+        content: ['This is your order id:'+orderId+ '\n next \n next']
+    };
+    generatePdf(docDefinition, (response) => {
+        res.setHeader('Content-Type', 'application/pdf');
+        res.send(response); // sends a base64 encoded string to client
+    });
+
+}
 
 // -------------------------------------------------------- PDF ------------------------------------------------------------------------
 
