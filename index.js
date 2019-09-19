@@ -615,7 +615,7 @@ function orderAdd( places, res, uid, eventId,paymentID,paymentCart,paymentTime,p
 
 
 
- function getOrderById(id){
+ async function getOrderById(id){
 
     var mongoClientPromise = mongoClient.connect(async function (err, client) {
         if (err){
