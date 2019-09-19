@@ -952,9 +952,14 @@ function sendPDF(documents, res) {
     console.log("Places");
     console.log(documents[0].places);
 
-
+    let content = [];
+    content.push('This is your order id:'+123+ '\n ');
+    for( let plase of places){
+        content.push(plase)
+    }
     const docDefinition = {
-        content: ['This is your order id:'+123+ '\n next \n next']
+        // content: ['This is your order id:'+123+ '\n next \n next']
+        content:content
     };
     generatePdf(docDefinition, (response) => {
         res.setHeader('Content-Type', 'application/pdf');
