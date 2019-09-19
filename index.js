@@ -892,7 +892,7 @@ console.log(orderId);
     console.log('');
     console.log('');
 
-    let order = getOrderById(orderId);
+    let order = async () => { await getOrderById(orderId);};
     console.log('order');
     console.log(order);
 
