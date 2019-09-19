@@ -5,6 +5,7 @@ var mongo = require('mongodb');
 const pdfMakePrinter = require('pdfmake/src/printer');
 var path = require('path');
 var Printer = require('pdfmake');
+var wait = require('waitfor');
 
 
 const PORT = process.env.PORT || 5000;
@@ -892,12 +893,8 @@ console.log(orderId);
     console.log('');
     console.log('');
 
-    let order = async () => { await getOrderById(orderId);};
-    console.log('order');
+    let order = wait.for(getOrderById(orderId));
     console.log(order);
-
-
-
 
     const docDefinition = {
         content: ['This is your order id:'+orderId+ '\n next \n next']
